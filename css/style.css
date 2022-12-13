@@ -674,8 +674,8 @@
 @keyframes animatationcenter {
   /* 0%{transform: scaleY(2) translate(0%, 0%)} */
   0% {transform: scaleY(1.2);}
-  50%{transform: translate(100%, 150%)} */
-  80%{transform: scaleY(1.2) translate(-100%, 0%)}
+  50%{transform: translate(100%, 150%)} 
+  80%{transform: scaleY(1.2) translate(-100%, 0%)};
 
 }
 .kitanoos{
