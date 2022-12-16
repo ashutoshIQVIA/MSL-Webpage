@@ -34,34 +34,105 @@ let changecolor = document.getElementsByClassName('inputDesign');
 let outercolor = document.getElementsByClassName('checkboxOuter');
 let boxcolor = document.getElementsByClassName('option-box');
 let answerValidation = [];
+var htmlbox = `
+
+          <div class="kitnoo1 kitanu-left"><img src="images/kitanoo1.png" alt="Virus"></div>
+          <div class="kitnoo2 kitanu-right"><img src="images/kitanoo6.png" alt="Virus"></div>
+		  <div class="kitnoo2 kitanu-bottom"><img src="images/kitanoo7.png" alt="Virus"></div>
+          <div class="kitnoo1 kitanu-right"><img src="images/kitanoo3.png" alt="Virus"></div>
+          <div class="kitnoo1 kitanu-bottom"><img src="images/kitanoo4.png" alt="Virus"></div>
+          <div class="kitnoo1 kitanu-left"><img src="images/kitanoo1.png" alt="Virus"></div>
+          <div class="kitnoo3 kitanu-left"><img src="images/kitanoo5.png" alt="Virus"></div>
+		  <div class="kitnoo3 kitanu-right"><img src="images/kitanoo7.png" alt="Virus"></div>
+
+          `
+
+var htmlboxReduced = `
+
+          <div class="kitnoo1 kitanu-left"><img src="images/kitanoo1.png" alt="Virus"></div>
+		  <div class="kitnoo3 kitanu-left"><img src="images/kitanoo5.png" alt="Virus"></div>
+ 		  <div class="kitnoo3 kitanu-right"><img src="images/kitanoo7.png" alt="Virus"></div>
+		  <div class="kitnoo2 kitanu-bottom"><img src="images/kitanoo7.png" alt="Virus"></div>
+          `
 
 
 for (let index = 0; index < clicksEvent1.length; index++) {
   clicksEvent1[index].addEventListener('click', () => {
+	  
+	 //deactivate more than 2 selections starts 
+	  let check = document.getElementsByClassName('checkValues');
+		let indexcount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+		for(i = 0 ; i<check.length ; i++){
+		if(indexcount == 2 ){
+			 if(!check[i].checked){
+				  check[i].disabled = true;
+				 if(check[i].disabled == true){
+					outercolor[i].style.border = 'solid rgba(140,140,140,0.1)';
+      				changecolor[i].style.border = 'solid rgba(140,140,140,0.1)';
+					}
+			 }
+		}else{
+			check[i].disabled = false;
+			outercolor[i].style.border = 'solid rgba(140,140,140,1)';
+      		changecolor[i].style.border = '2px solid rgba(140,140,140,1)';
+		}
+		}
+	  //deactivate more than 2 selections end
+	  
+	  
+	  
+	if (clicksEvent1[index].checked > 1) {
+		clicksEvent1[index].hide();
+	}
 
     if (clicksEvent1[index].checked) {
       changecolor[index].style.background = '#319F6F'
       outercolor[index].style.border = 'solid #F68721'
       boxcolor[index].style.border = 'solid #F68721'
       //console.log(clicksEvent1[index].checked)
+		
+		
+		//	Red color for wrong Selection starts 
+		if(clicksEvent1[2].checked || clicksEvent1[3].checked){
+		   if(clicksEvent1[2].checked && clicksEvent1[3].checked){
+			   changecolor[2].style.background = '#ff0000'
+			   changecolor[3].style.background = '#ff0000'
+		   }else if(clicksEvent1[2].checked){
+			   changecolor[2].style.background = '#ff0000'
+		   }else{
+				changecolor[3].style.background = '#ff0000'
+		   }
+		}
+	//	Red color for wrong Selection end
+		
 
       if (clicksEvent1[0].checked && clicksEvent1[1].checked) {
-        if (!clicksEvent1[2].checked && !clicksEvent1[3].checked) {
+        if (!clicksEvent1[2].checked && !clicksEvent1[3].checked) { 
+		document.querySelector('.kitanoos').style.backgroundColor = 'rgba(255,255,255,0.1)';
+		document.getElementsByClassName('kitanoo-box')[0].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[2].innerHTML = htmlboxReduced;
+        document.getElementsByClassName('kitanoo-box')[1].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[3].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[4].innerHTML = htmlboxReduced;
+	    document.getElementsByClassName('kitanoo-box')[5].innerHTML = htmlboxReduced;
+		setTimeout(function(){ 
           $(".congrats-pop").show();
           congratsPage();
-        }
+		setTimeout(function(){  	
+          $(".congrats-pop").show();
+		  $(".cong-text").hide();
+		  $(".cong-content").show();
+          congratsPage();
+		  $(".cong-boy img").css({"width": "15%","bottom": "2%","min-width": "125px"});
+        }, 4000);
+		}, 2000);
+	   }
+	   
       }else {
 
         //kidanu bharo
-        console.log('wrong value selected')
-        let htmlbox = `
-
-
-          <div class="kitnoo2 kitanu-right"><img src="images/kitanoo6.png" alt="Virus"></div>
-		  <div class="kitnoo2 kitanu-bottom"><img src="images/kitanoo7.png" alt="Virus"></div>
-
-
-          `
+        //console.log('wrong value selected')
+        
         document.getElementsByClassName('kitanoo-box')[0].innerHTML += htmlbox;
         document.getElementsByClassName('kitanoo-box')[2].innerHTML += htmlbox;
         document.getElementsByClassName('kitanoo-box')[1].innerHTML += htmlbox;
@@ -82,21 +153,35 @@ for (let index = 0; index < clicksEvent1.length; index++) {
       //console.log(clicksEvent1[index].checked)
       if (clicksEvent1[0].checked && clicksEvent1[1].checked) {
         if (!clicksEvent1[2].checked && !clicksEvent1[3].checked) {
+		  document.querySelector('.kitanoos').style.backgroundColor = 'rgba(255,255,255,0.1)';
+		document.getElementsByClassName('kitanoo-box')[0].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[2].innerHTML = htmlboxReduced;
+        document.getElementsByClassName('kitanoo-box')[1].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[3].innerHTML = htmlboxReduced;
+		document.getElementsByClassName('kitanoo-box')[4].innerHTML = htmlboxReduced;
+	    document.getElementsByClassName('kitanoo-box')[5].innerHTML = htmlboxReduced;
+		  setTimeout(function(){ 
           $(".congrats-pop").show();
           congratsPage();
+		  setTimeout(function(){  	
+          $(".congrats-pop").show();
+		  $(".cong-text").hide();
+		  $(".cong-content").show();
+          congratsPage();
+		  $(".cong-boy img").css({"width": "15%","bottom": "2%","min-width": "125px"});
+        }, 4000);
+	    }, 2000);
         }
-
       } 
     }
-
-    // console.log(clicksEvent1[index].checked)
 
   })
 
 }
 
+
 var audio = new Audio("audio/gong-bg-music.mp3");
-$(".gong-game").on("click", function () {
+$(".gong-game,.begin-battle").on("click", function () {
   $(".gong-game").hide();
   $(".gong-game-gif").show();
   audio.play();
